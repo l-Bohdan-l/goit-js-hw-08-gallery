@@ -66,7 +66,6 @@ const galleryItems = [
 
 
 const galleryEl = document.querySelector(".js-gallery");
-const galleryList = [];
 
 function createGallary(array) {
   
@@ -80,9 +79,11 @@ function createGallary(array) {
 }
 
 const galleryMarkup = createGallary(galleryItems);
-console.log(galleryMarkup);
-
 galleryEl.insertAdjacentHTML('beforeend', galleryMarkup)
 
-// width = '1260px'
-//     height = '750px'
+// const lightboxEl = document.querySelector('.lightbox')
+// galleryEl.addEventListener('click', addModalWindow())
+
+// function addModalWindow() {
+//   lightboxEl.classList.add('.is-open')
+// }
