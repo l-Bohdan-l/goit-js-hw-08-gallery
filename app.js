@@ -69,3 +69,46 @@ if (lightBoxEl.classList.contains('is-open')) {
   lightBoxOverlayEl.addEventListener('click', removeOverlay);
   window.addEventListener('keyup', closeOverlayByEscape);
 }
+
+window.addEventListener('keyup', toGoToTheNextPicture);
+window.addEventListener('keyup', toGoToThePreviousPicture);
+
+function toGoToTheNextPicture(e) {
+  if (e.code !== "ArrowRight") {
+    return;
+  }
+
+  const indexOfCurrentImageInGallery = galleryItems.indexOf(
+    galleryItems.find((item) => item.description === lightBoxImageEl.alt)
+  );
+
+  if (indexOfCurrentImageInGallery !== galleryItems.length - 1) {
+    lightBoxImageEl.src = galleryItems[indexOfCurrentImageInGallery + 1].original;
+    lightBoxImageEl.alt =
+      galleryItems[indexOfCurrentImageInGallery + 1].description;
+  } else {
+    lightBoxImageEl.src = galleryItems[0].original;
+    lightBoxImageEl.alt = galleryItems[0].description;
+  }
+}
+
+function toGoToThePreviousPicture(e) {
+  const lastElIndex = galleryItems.length - 1;
+  if (e.code !== "ArrowLeft") {
+    return;
+  }
+  
+  const indexOfCurrentImageInGallery = galleryItems.indexOf(
+    galleryItems.find((item) => item.description === lightBoxImageEl.alt)
+    );
+           
+        if (indexOfCurrentImageInGallery === 0) {
+          
+      lightBoxImageEl.src = galleryItems[lastElIndex].original;
+      lightBoxImageEl.alt = galleryItems[lastElIndex].description;
+        } else {
+      lightBoxImageEl.src = galleryItems[indexOfCurrentImageInGallery - 1].original;
+      lightBoxImageEl.alt =
+        galleryItems[indexOfCurrentImageInGallery - 1].description;      
+  }
+}
